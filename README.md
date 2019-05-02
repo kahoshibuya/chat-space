@@ -10,7 +10,7 @@
 ### Association
 - has_many :members
 - has_many :groups, through: :members
-- has_many :massage, through: :members
+- has_many :message
 
 
 ## groupテーブル
@@ -21,7 +21,7 @@
 ### Association
 - has_many :members
 - has_many :users, through: :members
-- has_many :massage, through: :members
+- has_many :message
 
 
 ## membersテーブル（中間テーブル）
@@ -34,9 +34,8 @@
 ### Association
 - belongs_to :group
 - belongs_to :user
-- has_many :massages
 
-## massageテーブル
+## messageテーブル
 
 |Column|Type|Options|
 |------|----|-------|
@@ -46,5 +45,5 @@
 |image|string| 
 
 ### Association
-- belongs_to :group, through: :mambers
-- belongs_to :user, through: :members
+- belongs_to :group
+- belongs_to :user
