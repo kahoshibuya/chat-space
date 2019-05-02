@@ -5,7 +5,6 @@
 ## userテーブル
 |Column|Type|Options|
 |------|----|-------|
-|user_id|integer|null: false, unique: true|
 |name|varcher|null: false|
 |e-mail|varcher|null: false, unique: true|
 |password|varcher|null: false|
