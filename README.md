@@ -21,7 +21,7 @@
 ### Association
 - has_many :members
 - has_many :users, through: :members
-- has_many :message
+- has_many :messages
 
 
 ## membersテーブル（中間テーブル）
