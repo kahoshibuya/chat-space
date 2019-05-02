@@ -6,8 +6,6 @@
 |Column|Type|Options|
 |------|----|-------|
 |name|varcher|null: false|
-|e-mail|varcher|null: false, unique: true|
-|password|varcher|null: false|
 
 ### Association
 - has_many :members
@@ -18,8 +16,7 @@
 ## groupテーブル
 |Column|Type|Options|
 |------|----|-------|
-|group_id|integer|null: false, unique: true|
-|groupe_name|varcher|null: false|
+|name|varcher|null: false|
 
 ### Association
 - has_many :members
