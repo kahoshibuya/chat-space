@@ -36,6 +36,7 @@
           %div.current-group
             %h2 test-group
             %ul.member-list 
+              %li.member-list__index Member : 
               %p.member-list__member seo
               %p.member-list__member neko
 
@@ -60,7 +61,7 @@
         %div.form
           %div.new-message
             %div.input-box
-              %input{:type => "text", :name => "message[content]", :class => "input-box__text"}
+              %input{:type => "text", :name => "message[content]", :class => "input-box__text", :placeholder => "type a message"}
                 %lavel.image-lavel
                   %i
                     =fa_icon "image"
