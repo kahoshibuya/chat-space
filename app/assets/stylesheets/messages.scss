@@ -1,8 +1,10 @@
+@import "variable";
+
 * {
   box-sizing: border-box;
 }
 .html {
-  background-color: white;
+  background-color: $palette-trueWhite;
 }
 .body {
   margin: 0;
@@ -10,7 +12,7 @@
 }
 
 //フラッシュボックス
-// .flash-box {
+// .flash-box 
 //   background-color: #38AEF0;
 //   color: white;
 //   text-align: center;
@@ -18,12 +20,12 @@
 
 .chat-side {
   width: 300px;
-  color: white;
+  color: $palette-trueWhite;
   float: left;
 
   //userの名前部分のボックス
   .side-header {
-    background-color: #253141;
+    background-color: $palette-darkBlue;
     height: 100px;
     display: flex;
     align-items: center;
