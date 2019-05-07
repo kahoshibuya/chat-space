@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 .html {
-  background-color: $palette-trueWhite;
+  background-color: $white;
 }
 .body {
   margin: 0;
@@ -18,12 +18,12 @@
 
 .chat-side {
   width: 300px;
-  color: $palette-trueWhite;
+  color: $white;
   float: left;
 
   //userの名前部分のボックス
   .side-header {
-    background-color: $palette-darkBlue;
+    background-color: $side_blue_dark;
     height: 100px;
     display: flex;
     align-items: center;
