@@ -2,35 +2,40 @@
 -# %div.flash-box
 -#   %p グループを作成しました
 
-#wrapper
-  #chat-side
+.wrapper
+  .chat-side
     //userの名前部分のボックス
-    #side-header
-      %p.side-header__user-name test-user
+    .side-header
+      %p.side-header__user-name 
+        = current_user.name
       %ul.user-menu
         /アカウントの編集アイコン
         %li.user-menu__edit-user
-          =fa_icon "edit"
+          = link_to do
+            = fa_icon 'pencil-square-o', class: 'icon'
+          -# =fa_icon "edit"
         /グループの新規作成アイコン
         %li.user-menu__new-group
-          =fa_icon "cog"
+          = link_to edit_user_path(current_user) do
+            = fa_icon 'cog', class: 'icon'
+          -# =fa_icon "cog"
         
     //参加中のグループ
-    #groups
-      #group
+    .groups
+      .group
         %p.group__group-name test-group
         %p.group__latest-message さようなら
-      #group
+      .group
         %p.group__group-name sample-group
         %p.group__latest-message hello!
-      #group
+      .group
         %p.group__group-name example
         %p.group__latest-message まだメッセージがありません
 
-  #chat-main
+  .chat-main
     //メッセージ表示中のグループ
-    #main-header
-      #current-group
+    .main-header
+      .current-group
         %h2 test-group
         %ul.member-list 
           %li.member-list__index Member : 
@@ -39,25 +44,25 @@
 
       //editボタン
       %link_to
-        #main-header__edit-btn Edit
+        .main-header__edit-btn Edit
 
     //メッセージ表示部分
-    #messages
-      #message
-        #upper-info
+    .messages
+      .message
+        .upper-info
           %p.upper-info__user test-user
           %p.upper-info__date 2019/05/04(Sta) 14:18:20
         %p.message__text こんにちは！
-      #message
-        #upper-info
+      .message
+        .upper-info
           %p.upper-info__user test-user
           %p.upper-info__date 2019/05/04(Sta) 14:30:20
         %p.message__text さようなら
 
     //メッセージ入力部分
-    #form
-      #new-message
-        #input-box
+    .form
+      .new-message
+        .input-box
           %input{:type => "text", :name => "message[content]", :class => "input-box__text", :placeholder => "type a message"}
             %label.image-lavel
               %i
