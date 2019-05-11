@@ -12,14 +12,12 @@
       // font-size: $side_header_font;
       font-weight: bold;
     }
-    &__user-menu {
+    .user-menu {
       display: inline-block;
       float: right;
-      .list {
-        display: inline-block;
-      }
       .icon {
         color: $white;
+        display: inline-block;
         // font-size: $side_header_font;
       }
     }
