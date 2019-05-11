@@ -5,14 +5,13 @@
     %ul.user-menu
       /アカウントの編集アイコン
       .list
-        .icon
-          %li.user-menu__edit-user
-            = link_to new_group_path do
-              = fa_icon 'pencil-square-o', class: 'icon'
-          /グループの新規作成アイコン
-          %li.user-menu__new-group
-            = link_to edit_user_path(current_user) do
-              = fa_icon 'cog', class: 'icon'
+        %li.icon
+          = link_to new_group_path do
+            = fa_icon 'pencil-square-o', class: 'icon'
+        /グループの新規作成アイコン
+        %li.icon
+          = link_to edit_user_path(current_user) do
+            = fa_icon 'cog', class: 'icon'
         
     //参加中のグループ
   .groups
