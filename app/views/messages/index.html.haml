@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 //フラッシュボックス
 -# %div.flash-box
 -#   %p グループを作成しました
@@ -69,5 +70,51 @@
                 =fa_icon "image"
               %input{:id => "image", :class => "image-lavel__input", :type => "file", :name => "message[image]", :id => "image"}
         %input{:type => "submit", :name => "commit", :value => "Send", :class => "new-message__submit-btn"}
+=======
+.contents
+  =render 'devise/shared/side_bar'
+  .chat-main
+    //メッセージ表示中のグループ
+    .main-header
+      .current-group
+        .current-group__title test-group
+        .current-group__members 
+          %li.current-group__members__index Member : 
+          %p.current-group__members__member seo
+          %p.current-group__members__member neko
 
+      //editボタン
+      %link_to
+        .main-header__edit-btn Edit
+>>>>>>> Stashed changes
 
+    //メッセージ表示部分
+    .messages
+      .message
+        .upper-info
+          %p.upper-info__user test-user
+          %p.upper-info__date 2019/05/04(Sta) 14:18:20
+        %p.message__text こんにちは！
+      .message
+        .upper-info
+          %p.upper-info__user test-user
+          %p.upper-info__date 2019/05/04(Sta) 14:30:20
+        %p.message__text さようなら
+
+    //メッセージ入力部分
+    .form
+      .new-message
+        .input-box
+          = form_for [@group, @message] do |f|
+          = f.text_field :content, class: 'input-box__text', placeholder: 'type a message'
+        .image-label
+          = f.label :image, class: 'image-label' do
+            = fa_icon 'picture-o', class: 'icon'
+            = f.file_field :image, class: 'input'
+        = f.submit 'Send', class: 'submit-btn'
+        -#   %input{:type => "text", :name => "message[content]", :class => "input-box__text", :placeholder => "type a message"}
+        -#     %label.image-label
+        -#       %i
+        -#         =fa_icon "image"
+        -#       %input{:id => "image", :class => "image-label__input", :type => "file", :name => "message[image]"}
+        -# %input{:type => "submit", :name => "commit", :value => "Send", :class => "new-message__submit-btn"}
