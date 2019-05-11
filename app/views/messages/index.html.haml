@@ -32,10 +32,10 @@
     .new-message
       .input-box
         %input{:type => "text", :name => "message[content]", :class => "input-box__text", :placeholder => "type a message"}
-          %label.image-lavel
+          %label.image-label
             %i
               =fa_icon "image"
-            %input{:id => "image", :class => "image-lavel__input", :type => "file", :name => "message[image]", :id => "image"}
+            %input{:id => "image", :class => "image-label__input", :type => "file", :name => "message[image]", :id => "image"}
       %input{:type => "submit", :name => "commit", :value => "Send", :class => "new-message__submit-btn"}
 
 
