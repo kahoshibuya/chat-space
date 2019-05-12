@@ -2,7 +2,7 @@
   display: flex;
 }
   .chat-main {
-    width: calc(100% - 300px);
+    width: calc(100vw - 300px);
     .main-header {
       box-sizing: border-box;
       height: 100px;
