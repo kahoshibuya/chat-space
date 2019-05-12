@@ -9,16 +9,22 @@
     align-items: center;
     line-height: 100px;
     padding: 0 20px;
+    position: relative;
     justify-content: space-between;
   &__user-name {
     font-weight: bold;
     display: flex;
-    
-    .icon {
-      color: $white;
-      display: inline-block;
-      cursor: pointer;
-      float: right;
+    .user-menu {
+      position: absolute;
+      right: 10px;
+      top: 43px;
+      .icon {
+        color: $white;
+        display: inline-block;
+        cursor: pointer;
+        float: right;
+        margin-right: 0.3rem;
+      }
     }
   }
   }
