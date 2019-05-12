@@ -78,7 +78,7 @@
         .input-box {
           border: none;
           width: 100%;
-          position: relative;
+          // position: relative;
           .input-box__text {
             background-color: $white;
             position: relative;
@@ -111,16 +111,5 @@
           }
         }
       }
-      // .new-message__submit-btn {
-      //   background-color: $light_blue;
-      //   border: none;
-      //   color: $white;
-      //   float: right;
-      //   font-size: 16px;
-      //   height: 50px;
-      //   margin-left: 15px;
-      //   padding: 0 30px;
-      //   cursor: pointer;
-      // }
     }
   }
