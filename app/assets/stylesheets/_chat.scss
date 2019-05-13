@@ -4,117 +4,113 @@
 .contents {
   display: flex;
 }
-  .chat-main {
-    width: calc(100vw - 300px);
-    .main-header {
-      box-sizing: border-box;
-      height: 100px;
-      padding: 0 40px;
-      display: flex;
-      .current-group {
-        float: left;
-        color: #333;
-        font-size: 20px;
-        margin-top: 35px;
-        &__members {
-          display: flex;
+.chat-main {
+  width: calc(100vw - 300px);
+  .main-header {
+    box-sizing: border-box;
+    height: 100px;
+    padding: 0 40px;
+    display: flex;
+    position: relative;
+    .current-group {
+      float: left;
+      color: #333;
+      font-size: 20px;
+      margin-top: 35px;
+      &__members {
+        display: flex;
+        color: $light_gray;
+        font-size: 12px;
+        margin-top: 15px;
+        &__member {
+          padding: 0 5px;
+        }
+      }
+    }
+    //EDITボタン
+    &__edit-btn {
+      border: 1px solid $light_blue;
+      color: $light_blue;
+      float: right;
+      height: 40px;
+      line-height: 40px;
+      margin-top: 28px;
+      padding: 0 20px;
+      position: absolute;
+      right: 40px;
+      
+      &__button {
+        color: $light_blue;
+        text-decoration: none;
+      }
+    }
+  }
+  .messages-box {
+    background-color: #FAFAFA;
+    padding: 46px 40px;
+    height: calc(100vh - 190px);
+    overflow: scroll;
+    .message {
+      padding-bottom: 40px;
+      .upper-info {
+        display: flex;
+        margin-bottom: 10px;
+        &__user {
+          color: $black;
+          font-size: 16px;
+          font-weight: bold;
+        }
+        &__date {
           color: $light_gray;
           font-size: 12px;
-          margin-top: 15px;
-          &__member {
-            padding: 0 5px;
-          }
+          padding-left: 10px;
         }
       }
-      //EDITボタン
-      &__edit-btn {
-        border: 1px solid $light_blue;
-        color: $light_blue;
-        float: right;
-        height: 40px;
-        line-height: 40px;
-        margin-top: 28px;
-        padding: 0 20px;
-        &__button {
-          color: $light_blue;
-          text-decoration: none;
-        }
+      .message__text {
+        color: #434a54;
+        font-size: 14px;
+        margin-bottom: 10px;
       }
     }
-    .messages-box {
-      height: calc(100vh - 190px);
-      overflow: scroll;
+  }
 
-      .messages {
-        background-color: #FAFAFA;
-        padding: 46px 40px 0;
-        .message {
-          padding-bottom: 40px;
-          .upper-info {
-            display: flex;
-            margin-bottom: 10px;
-            &__user {
-              color: $black;
-              font-size: 16px;
-              font-weight: bold;
-            }
-            &__date {
-              color: $light_gray;
-              font-size: 12px;
-              padding-left: 10px;
-            }
-          }
-          .message__text {
-            color: #434a54;
-            font-size: 14px;
-            margin-bottom: 10px;
-          }
-        }
-      }
-    }
 
-    .form {
-      background-color: #DDDDDD;
-      box-sizing: border-box;
-      height: 90px;
-      padding: 20px 50px 20px 40px;
+  .form {
+    background-color: #DDDDDD;
+    height: 90px;
+    padding: 20px 40px;
+    .new_message {
+      // position: relative;
       .input-box {
-        // border: none;
         width: 100%;
-        height: 50px;
         position: relative;
-        display: flex;
+        
         .input-box__text {
           background-color: $white;
-          // position: relative;
           height: 50px;
           padding: 0 80px 0 10px;
           margin-right: 20px;
           width: 100%;
           color: #434a54;
           border-style: none;
-        }
-        .image-label {
-          font-size: 1.3rem;
-          position: absolute;
-          top: 10px;
-          right: 10px;
-          cursor: pointer;
-          display: none;
-        }
-      }
-        .submit-btn {
-          background-color: $light_blue;
-          color: $white;
-          font-size: 16px;
-          height: 50px;
-          width: 100px;
-          padding-left: 15px;
-          cursor: pointer;
-          position: absolute;
-          bottom: 20px;
-          right: 10px;
-
+          .image-label {
+            font-size: 1.3rem;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+          }
         }
       }
     }
+  }
+  .submit-btn {
+    background-color: $light_blue;
+    color: $white;
+    font-size: 16px;
+    height: 50px;
+    width: 100px;
+    margin-left: 15px;
+    cursor: pointer;
+  }
+}
