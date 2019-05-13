@@ -7,8 +7,10 @@
         .current-group__title test-group
         .current-group__members 
           %li.current-group__members__index Member : 
-          %p.current-group__members__member seo
-          %p.current-group__members__member neko
+          .current-group__members__member
+            @user = User.select("name")
+          -# %p.current-group__members__member 
+          -#   -# = message.user
 
       //editボタン
       %link_to
