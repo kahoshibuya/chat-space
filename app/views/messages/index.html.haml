@@ -14,16 +14,14 @@
       %link_to
         .main-header__edit-btn Edit
 
-      .messages
-        = render @messages
+    .messages-box
+      = render @messages
     .form
-      .new-message
+      = form_for [@group, @message] do |f|
         .input-box
-          = form_for [@group, @message] do |f|
-            = f.text_field :content, class: 'input-box__text', placeholder: 'type a message'
-            .image-label
-            = f.label :image, class: 'image-label' do
-              = fa_icon 'picture-o', class: 'icon'
-              = f.file_field :image, class: 'input'
-            = f.submit 'Send', class: 'submit-btn'
+          = f.text_field :content, class: 'input-box__text', placeholder: 'type a message'
+          = f.label :image, class: 'image-label' do
+            = fa_icon 'picture-o', class: 'icon'
+            = f.file_field :image, class: 'input'
+        = f.submit 'Send', class: 'submit-btn'
         
