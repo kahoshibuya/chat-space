@@ -7,34 +7,23 @@
         .current-group__title test-group
         .current-group__members 
           %li.current-group__members__index Member : 
-          %p.current-group__members__member seo
-          %p.current-group__members__member neko
+          .current-group__members__member
+            @user = User.select("name")
+          -# %p.current-group__members__member 
+          -#   -# = message.user
 
       //editボタン
       %link_to
         .main-header__edit-btn Edit
 
-    //メッセージ表示部分
-    .messages
-      .message
-        .upper-info
-          %p.upper-info__user test-user
-          %p.upper-info__date 2019/05/04(Sta) 14:18:20
-        %p.message__text こんにちは！
-      .message
-        .upper-info
-          %p.upper-info__user test-user
-          %p.upper-info__date 2019/05/04(Sta) 14:30:20
-        %p.message__text さようなら
-
-    //メッセージ入力部分
+    .messages-box
+      = render @messages
     .form
-      .new-message
+      = form_for [@group, @message] do |f|
         .input-box
-          %input{:type => "text", :name => "message[content]", :class => "input-box__text", :placeholder => "type a message"}
-            %label.image-label
-              =fa_icon "image"
-              %input{:id => "image", :class => "image-label__input", :type => "file", :name => "message[image]"}
-        %input{:type => "submit", :name => "commit", :value => "Send", :class => "new-message__submit-btn"}
-
-
+          = f.text_field :content, class: 'input-box__text', placeholder: 'type a message'
+          = f.label :image, class: 'image-label' do
+            = fa_icon 'picture-o', class: 'icon'
+            = f.file_field :image, class: 'hidden'
+        = f.submit 'Send', class: 'submit-btn'
+        
