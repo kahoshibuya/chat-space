@@ -1,5 +1,5 @@
 $(function() {
-  // function new_message(message) {
+  // function buildHTML(data) {
   //   var new_message = '<div class="upper-info">' +
   //               '<p class="upper-info__username">'+ ${message.name} +'</p>' +
   //               '<p class="upper-info__date">'+ ${message.time} + '<p>' +
@@ -10,8 +10,9 @@ $(function() {
 
   $('#new_message').on('submit', function(e) {
     e.preventDefault();
-    var formData = new FormData(this);
-    var url = $(this).attr('action')
+    var formData = new FormData($(this).get(0));
+    var group_id = $('.group_id').attr('value');
+    var url = '/groups/' + group_id + '/messages'
     $.ajax({
       url: url,
       type: 'POST',
@@ -36,9 +37,6 @@ $(function() {
       console.log('error!');
     });
   });
-  // function scroll() {
-  //   $('.messages').animate({scrollTopposition}, speed, 'swing');
-  // }
 })
     
 
