@@ -1,41 +1,45 @@
 $(function() {
-  function buildHTML(message){
-
-    var html = `<div class="message">
-                  <div class="upper-info">
-                      <div class="upper-info__user">
-                          ${ message.user_name }
-                      </div>
-                      <div class="upper-info__date">
-                          ${ message.time }
-                      </div>
-                  </div>
-                  <div class="message__text">
-                      <p class="message__text__content">
-                          ${ message.content }
-                      </p>
-                  </div>
-              </div>`;
-    return html;
-    }
+  // function new_message(message) {
+  //   var new_message = '<div class="upper-info">' +
+  //               '<p class="upper-info__username">'+ ${message.name} +'</p>' +
+  //               '<p class="upper-info__date">'+ ${message.time} + '<p>' +
+  //               '<p class ="message__text__content">' + ${message.body} +'</p>' +
+  //               '</div>'
+  //   return new_message;
+  // }
 
   $('#new_message').on('submit', function(e) {
     e.preventDefault();
     var formData = new FormData(this);
-    var url = $(this).attr('action');
+    var url = $(this).attr('action')
     $.ajax({
       url: url,
-      type: "POST",
+      type: 'POST',
       data: formData,
-      dataType: 'json',
+      contentType: false,
       processData: false,
-      contentType: false
+      dataType: 'json',
     })
-    .done(function(data){
-      .var html = buildHTML(data);
+    .done(function(date){ 
+      var html = buildHTML(data);
+      // ajaxのリクエストが成功
+      console.log('success!'); 
+      console.log(date); 
+      // var html = new_message(date); 
       $('.messages').append(html);
-      $('.input-box__text').val('');
+      $('.input-box__text').val('');   
+      $('.messages').animate({scrollTopposition}, speed, 'swing');
       $('.submit-btn').prop('disabled', false);
     })
-  })
+    .fail(function(date){
+      // ajaxのリクエストが失敗
+      console.log('error!');
+    });
+  });
+  // function scroll() {
+  //   $('.messages').animate({scrollTopposition}, speed, 'swing');
+  // }
 })
+    
+
+
