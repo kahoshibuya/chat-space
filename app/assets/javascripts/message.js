@@ -32,8 +32,6 @@ $(function() {
     .done(function(data){ 
       var html = buildHTML(data);
       // ajaxのリクエストが成功
-      console.log('success!');
-      console.log(data);
       $('.messages').append(html);
       $('.input-box__text').val('');
       $('#new_message')[0].reset();
@@ -41,7 +39,6 @@ $(function() {
     })
     .fail(function(){
       // ajaxのリクエストが失敗
-      console.log('error!');
     })
     .always(function() {
       $('.submit-btn').prop('disabled', false);
