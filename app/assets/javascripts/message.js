@@ -32,19 +32,19 @@ $(function() {
     .done(function(data){ 
       var html = buildHTML(data);
       // ajaxのリクエストが成功
-      console.log('success!'); 
-      console.log(data); 
+      console.log('success!');
+      console.log(data);
       $('.messages').append(html);
-      $('.input-box__text').val('');   
+      $('.input-box__text').val('');
+      $('#new_message')[0].reset();
       $('.messages-box').animate({scrollTop: $('.messages-box')[0].scrollHeight});
-      $('.submit-btn').prop('disabled', false);
     })
-    .fail(function(data){
+    .fail(function(){
       // ajaxのリクエストが失敗
       console.log('error!');
-    });
+    })
+    .always(function() {
+      $('.submit-btn').prop('disabled', false);
+    })
   });
 })
-    
-
-
