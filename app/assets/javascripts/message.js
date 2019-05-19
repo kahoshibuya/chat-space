@@ -6,8 +6,8 @@ $(function() {
                 <div class="upper-info__date">${message.time} </div>
               </div>
               <div class="message__text">
-                <p class ="message__text__content">${message.content} </p> 
-                </div>
+                <p class ="message__text__content"><div>${message.content}</div>
+                ${message.image}</p> 
               </div>`
     return new_message;
   }
