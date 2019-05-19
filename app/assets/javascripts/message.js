@@ -1,10 +1,14 @@
 $(function() {
-  function buildHTML(data) {
-    var new_message = `<div class="input-box">
-                <p class="input-box__text">${message.content} </p>
-                <p class="upper-info__date">${message.time} <p>
-                <p class ="message__text__content">${message.body} </p> 
-                </div>`
+  function buildHTML(message) {
+    var new_message = `<div class="message">
+              <div class="upper-info">
+                <div class="upper-info__user">${message.name} </div>
+                <div class="upper-info__date">${message.time} </div>
+              </div>
+              <div class="message__text">
+                <p class ="message__text__content">${message.content} </p> 
+                </div>
+              </div>`
     return new_message;
   }
 
@@ -21,18 +25,19 @@ $(function() {
       processData: false,
       contentType: false
     })
-    .done(function(date){ 
+    .done(function(data){ 
+      console.log(data);
       var html = buildHTML(data);
       // ajaxのリクエストが成功
       console.log('success!'); 
-      console.log(date); 
-      var html = new_message(date); 
+      console.log(data); 
+      // var html = new_message(data); 
       $('.messages').append(html);
       $('.input-box__text').val('');   
-      $('.messages').animate({scrollTopposition}, speed, 'swing');
+      $('.messages').animate({scrollBottom: $('.messages')[0].scrollHeight});
       $('.submit-btn').prop('disabled', false);
     })
-    .fail(function(date){
+    .fail(function(data){
       // ajaxのリクエストが失敗
       console.log('error!');
     });
