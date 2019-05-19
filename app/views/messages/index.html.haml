@@ -1,6 +1,7 @@
 .contents 
   =render 'devise/shared/side_bar'
   .chat-main
+    
     //メッセージ表示中のグループ
     .main-header
       .current-group
@@ -21,6 +22,7 @@
     .form
       = form_for [@group, @message], html: { id: 'new_message' } do |f|
         .input-box
+          = f.hidden_field :messages, :value => @group.id
           = f.text_field :content, class: 'input-box__text', placeholder: 'type a message'
           = f.label :image, class: 'image-label' do
             = fa_icon 'picture-o', class: 'icon'

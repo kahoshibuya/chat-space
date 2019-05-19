@@ -1,32 +1,32 @@
 $(function() {
-  // function buildHTML(data) {
-  //   var new_message = '<div class="upper-info">' +
-  //               '<p class="upper-info__username">'+ ${message.name} +'</p>' +
-  //               '<p class="upper-info__date">'+ ${message.time} + '<p>' +
-  //               '<p class ="message__text__content">' + ${message.body} +'</p>' +
-  //               '</div>'
-  //   return new_message;
-  // }
+  function buildHTML(data) {
+    var new_message = `<div class="input-box">
+                <p class="input-box__text">${message.content} </p>
+                <p class="upper-info__date">${message.time} <p>
+                <p class ="message__text__content">${message.body} </p> 
+                </div>`
+    return new_message;
+  }
 
   $('#new_message').on('submit', function(e) {
     e.preventDefault();
-    var formData = new FormData($(this).get(0));
-    var group_id = $('.group_id').attr('value');
-    var url = '/groups/' + group_id + '/messages'
+    var formData = new FormData(this);
+    var message_messages_id = $('#message_messages').attr('value')
+    var url = `/groups/${ message_messages_id }/messages/`
     $.ajax({
       url: url,
-      type: 'POST',
+      type: "POST",
       data: formData,
-      contentType: false,
-      processData: false,
       dataType: 'json',
+      processData: false,
+      contentType: false
     })
     .done(function(date){ 
       var html = buildHTML(data);
       // ajaxのリクエストが成功
       console.log('success!'); 
       console.log(date); 
-      // var html = new_message(date); 
+      var html = new_message(date); 
       $('.messages').append(html);
       $('.input-box__text').val('');   
       $('.messages').animate({scrollTopposition}, speed, 'swing');
