@@ -31,10 +31,9 @@ $(function() {
       // ajaxのリクエストが成功
       console.log('success!'); 
       console.log(data); 
-      // var html = new_message(data); 
       $('.messages').append(html);
       $('.input-box__text').val('');   
-      $('.messages').animate({scrollBottom: $('.messages')[0].scrollHeight});
+      $('.messages-box').animate({scrollTop: $('.messages-box')[0].scrollHeight});
       $('.submit-btn').prop('disabled', false);
     })
     .fail(function(data){
