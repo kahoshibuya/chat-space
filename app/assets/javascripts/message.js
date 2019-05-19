@@ -1,13 +1,17 @@
 $(function() {
-  function buildHTML(message) {
-    var new_message = `<div class="message">
+    function buildHTML(message) {
+      var imgHTML = (message.img !== null)
+                  ?("")
+                  :(`<img class="lower-message__image" src="message.image.url">`);
+
+      var new_message = `<div class="message">
               <div class="upper-info">
                 <div class="upper-info__user">${message.name} </div>
                 <div class="upper-info__date">${message.time} </div>
               </div>
               <div class="message__text">
-                <p class ="message__text__content"><div>${message.content}</div>
-                ${message.image}</p> 
+                <p class ="message__text__content">${message.content}</p> 
+                ${imgHTML}
               </div>`
     return new_message;
   }
@@ -26,7 +30,6 @@ $(function() {
       contentType: false
     })
     .done(function(data){ 
-      console.log(data);
       var html = buildHTML(data);
       // ajaxのリクエストが成功
       console.log('success!'); 

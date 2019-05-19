@@ -5,13 +5,12 @@
     //メッセージ表示中のグループ
     .main-header
       .current-group
-        .current-group__title test-group
+        .current-group__title 
+          = @group.name
         .current-group__members 
           %li.current-group__members__index Member : 
           .current-group__members__member
-            @user = User.select("name")
-          -# %p.current-group__members__member 
-          -#   -# = message.user
+            = @user
 
       //editボタン
       %link_to
