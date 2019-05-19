@@ -1,8 +1,8 @@
 $(function() {
     function buildHTML(message) {
-      var imgHTML = (message.img !== null)
+      var imgHTML = (message.image == null)
                   ?("")
-                  :(`<img class="lower-message__image" src="message.image.url">`);
+                  :(`<image class="lower-message__image" src="${message.image}">`);
 
       var new_message = `<div class="message">
               <div class="upper-info">
