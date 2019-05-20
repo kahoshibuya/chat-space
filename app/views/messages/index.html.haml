@@ -10,7 +10,8 @@
         .current-group__members 
           %li.current-group__members__index Member : 
           .current-group__members__member
-            = @user
+            - @group.users.each do |user|
+              = user.name
 
       //editボタン
       %link_to
