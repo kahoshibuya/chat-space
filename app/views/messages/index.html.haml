@@ -1,16 +1,17 @@
 .contents 
   =render 'devise/shared/side_bar'
   .chat-main
+    
     //メッセージ表示中のグループ
     .main-header
       .current-group
-        .current-group__title test-group
+        .current-group__title 
+          = @group.name
         .current-group__members 
           %li.current-group__members__index Member : 
           .current-group__members__member
-            @user = User.select("name")
-          -# %p.current-group__members__member 
-          -#   -# = message.user
+          - @group.users.each do |user|
+            = user.name
 
       //editボタン
       %link_to
@@ -19,8 +20,9 @@
     .messages-box
       = render @messages
     .form
-      = form_for [@group, @message] do |f|
+      = form_for [@group, @message], html: { id: 'new_message' } do |f|
         .input-box
+          = f.hidden_field :messages, :value => @group.id
           = f.text_field :content, class: 'input-box__text', placeholder: 'type a message'
           = f.label :image, class: 'image-label' do
             = fa_icon 'picture-o', class: 'icon'
