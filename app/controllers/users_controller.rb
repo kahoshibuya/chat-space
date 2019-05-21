@@ -1,5 +1,14 @@
 class UsersController < ApplicationController
   def index
+    @user = @group.users.new(user_params)
+    if @user.save
+      respond_to do |format|
+        format.html
+        format.json
+      end
+    else
+      render :index
+    end
   end
 
 
