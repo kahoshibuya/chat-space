@@ -21,16 +21,12 @@
       .chat-group-form__field--left
         = f.label :name, "チャットメンバー", class: "chat-group-form__label"
       .chat-group-form__field--right
-
+        #chat-group-users
+          #chat_group_user_22.chat_group_user.clearfix
+            =hidden_field_tag 'chat_group[user_ids][]', current_user.id, multiple: true
+          
       / グループ作成機能の追加時はここにcollection_check_boxesの記述を入れてください
       -# = f.collection_check_boxes :user_ids, User.all, :id, :name
-      
-        #chat-group-users
-          .chat-group-user.clearfix
-          =hidden_field_tag 'chat_group[user_ids][]', current_user.id
-          %p.chat-group-user__name 
-          = current_user.name
-        -# = render @users
       
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
