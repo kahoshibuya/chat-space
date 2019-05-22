@@ -14,8 +14,8 @@
             = user.name
 
       //editボタン
-      %link_to
-        .main-header__edit-btn Edit
+      .main-header__edit-btn
+        = link_to "Edit", edit_group_path(@group)
 
     .messages-box
       = render @messages
