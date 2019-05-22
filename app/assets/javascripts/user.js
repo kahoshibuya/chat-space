@@ -1,13 +1,13 @@
 $(function() {
 var search_list = $(".chat-group-form__input");
 
-
 function appendUser(user) {
   var html = `<div class="chat-group-user clearfix">
                 <p class="chat-group-user__name">ユーザー名</p>
                 <div class="user-search-add chat-group-user__btn chat-group-user__btn--add" data-user-id="ユーザーのid" data-user-name="ユーザー名">追加</div>
               </div>`
-  search_list.append(html);
+  // search_list.append(html);
+  return html;
 }
 
   $(".chat-group-form__input").on("keyup", function() {
@@ -15,21 +15,22 @@ function appendUser(user) {
 
     $.ajax({
       type: 'GET',
-      url: ,
+      url : '/users',
       data: { keyword: input },
       dataType: 'json'
     })
 
   .done(function(users) {
-    $(".chat-group-form__search.clearfix").empty();
-    if (user.length !== 0) {
-      users.forEach(function(users){
-        appendUser(user);
+    $(".user-search-result").empty();
+    if (users.length !== 0) {
+      users.forEach(function(user){
+        var html = appendUser(user);
+        result.append(html)
       })
     }
-    else {
-      appendErrMsgToHTML("ユーザー検索に失敗しました");
-    }
   })
+  .fail(function(){
+    alert('通信に失敗しました');
+  });
   })
 });
