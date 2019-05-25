@@ -3,7 +3,8 @@ var search_list = $(".chat-group-form__input");
 
 function appendUser(user) {
   var html = `<div class="chat-group-user clearfix">
-                <p class="chat-group-user__name">ユーザー名</p>
+                <input name = 'group[user_ids][]' type='hidden' value=${id}>
+                <p class="chat-group-user__name">${name}</p>
                 <div class="user-search-add chat-group-user__btn chat-group-user__btn--add" data-user-id="ユーザーのid" data-user-name="ユーザー名">追加</div>
               </div>`
   // search_list.append(html);
@@ -17,20 +18,22 @@ function appendUser(user) {
       type: 'GET',
       url : '/users',
       data: { keyword: input },
-      dataType: 'json'
+      dataType: 'json',
+      processData: false,
+      contentType: false
     })
 
-  .done(function(users) {
-    $(".user-search-result").empty();
-    if (users.length !== 0) {
-      users.forEach(function(user){
-        var html = appendUser(user);
-        result.append(html)
-      })
-    }
-  })
-  .fail(function(){
-    alert('通信に失敗しました');
-  });
+    .done(function(users) {
+      $(".user-search-result").empty();
+      if (users.length !== 0) {
+        users.forEach(function(users){
+          var html = appendUser(user);
+          result.append(html)
+        })
+      }
+    })
+    .fail(function(){
+      alert('通信に失敗しました');
+    });
   })
 });
