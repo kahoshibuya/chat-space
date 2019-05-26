@@ -34,3 +34,12 @@ function appendUser(user) {
     });
   })
 });
+
+$(function() {
+  $(document).on("click", ".chat-group-user__btn--add", function () {
+    var name = $(this).attr("data-user-name");
+    var user_id = $(this).attr("data-user-id");
+    $(this).parent().remove();
+    appendMembers(user.name, user.id);
+  });
+})
