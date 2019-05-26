@@ -11,7 +11,6 @@ var member_list = $("#chat-group-users");
   }
 
   function addHTML(id,name) {
-    console.log(addHTML)
     var html = `<div class='chat-group-user clearfix js-chat-member' id='chat-group-user-8'>
                   <input name='group[user_ids][]' type='hidden' value=${id}>
                   <p class='chat-group-user__name'>${name}</p>
@@ -19,7 +18,6 @@ var member_list = $("#chat-group-users");
                 </div>`
     return html;
   }
-
 
   $(".chat-group-form__input").on("keyup", function() {
     var input = $(".chat-group-form__input").val();
@@ -54,8 +52,8 @@ var member_list = $("#chat-group-users");
       $('#chat-group-users').append(html);
       $(this).parent().remove();
     });
-    $(document).on("click", '.user_search_remove', function() {
+    $(document).on("click", '.js-remove-btn', function() {
       $(this).parent().remove();
-    });
+    })
   })
 });
