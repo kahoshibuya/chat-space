@@ -1,13 +1,25 @@
 $(function() {
 var search_list = $("#user-search-result");
+var member_list = $("#chat-group-users");
 
-function appendUser(user) {
-  var html = `<div class='chat-group-user clearfix js-chat-member'>
-                <p class="chat-group-user__name">${user.name}</p>
-                <div class="user-search-add chat-group-user__btn chat-group-user__btn--add" data-user-id="${user.id}" data-user-name="${user.name}">追加</div>
-              </div>`
-  search_list.append(html);
-}
+  function appendUser(user) {
+    var html = `<div class='chat-group-user clearfix js-chat-member'>
+                  <p class="chat-group-user__name">${user.name}</p>
+                  <div class="user-search-add chat-group-user__btn chat-group-user__btn--add" data-user-id="${user.id}" data-user-name="${user.name}">追加</div>
+                </div>`
+    search_list.append(html);
+  }
+
+  function addHTML(id,name) {
+    console.log(addHTML)
+    var html = `<div class='chat-group-user clearfix js-chat-member' id='chat-group-user-8'>
+                  <input name='group[user_ids][]' type='hidden' value=${id}>
+                  <p class='chat-group-user__name'>${name}</p>
+                  <div class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn'>削除</div>
+                </div>`
+    return html;
+  }
+
 
   $(".chat-group-form__input").on("keyup", function() {
     var input = $(".chat-group-form__input").val();
@@ -25,7 +37,6 @@ function appendUser(user) {
       if (users.length !== 0) {
         users.forEach(function(user){
           appendUser(user);
-          console.log(appendUser);
         })
       }
     })
@@ -33,13 +44,18 @@ function appendUser(user) {
       alert('通信に失敗しました');
     });
   })
-});
 
-$(function() {
-  $(document).on("click", ".chat-group-user__btn--add", function () {
-    var name = $(this).attr("data-user-name");
-    var user_id = $(this).attr("data-user-id");
-    $(this).parent().remove();
-    appendMembers(user.name, user.id);
-  });
-})
+  $(function() {
+    $('#user-search-result').on('click','.user-search-add',function(e){
+      e.preventDefault();
+      var id = $(this).attr("data-user-id");
+      var name = $(this).attr("data-user-name");
+      var html = addHTML(id,name);
+      $('#chat-group-users').append(html);
+      $(this).parent().remove();
+    });
+    $(document).on("click", '.user_search_remove', function() {
+      $(this).parent().remove();
+    });
+  })
+});
