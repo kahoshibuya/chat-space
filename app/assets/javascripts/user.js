@@ -43,17 +43,14 @@ var member_list = $("#chat-group-users");
     });
   })
 
-  $(function() {
-    $('#user-search-result').on('click','.user-search-add',function(e){
-      e.preventDefault();
-      var id = $(this).attr("data-user-id");
-      var name = $(this).attr("data-user-name");
-      var html = addHTML(id,name);
-      $('#chat-group-users').append(html);
-      $(this).parent().remove();
-    });
-    $(document).on("click", '.js-remove-btn', function() {
-      $(this).parent().remove();
-    })
+  $('#user-search-result').on('click','.user-search-add',function(e){
+    var id = $(this).attr("data-user-id");
+    var name = $(this).attr("data-user-name");
+    var html = addHTML(id,name);
+    $('#chat-group-users').append(html);
+    $(this).parent().remove();
+  });
+  $(document).on("click", '.js-remove-btn', function() {
+    $(this).parent().remove();
   })
 });
