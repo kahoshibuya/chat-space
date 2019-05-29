@@ -44,4 +44,33 @@ $(function() {
       $('.submit-btn').prop('disabled', false);
     })
   });
+
+  $(function(){
+    $(function(){
+      setInterval(update, 10000);
+    });
+    function update(){
+        var message_id = $('.messages:last').data('id');
+      $.ajax({
+        //ルーティングで設定した通りのURLを指定
+        url: location.href,
+        //ルーティングで設定した通りhttpメソッドをgetに指定
+        type: 'get',
+        dataType: 'json',
+        //dataオプションでリクエストに値を含める
+        data: {id: message_id}
+      })
+      .always(function(data){ //通信したら、成功しようがしまいが受け取ったデータ（@new_message)を引数にとって以下のことを行う
+        $.each(data, function(i, data){ //'data'を'data'に代入してeachで回す
+          buildMESSAGE(data); //buildMESSAGEを呼び出す
+        });
+      });
+      .done(function(messages) {
+        console.log('success');
+      })
+      .fail(function() {
+        console.log('error');
+      });
+    };
+  })
 })
