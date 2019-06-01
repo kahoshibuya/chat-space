@@ -31,7 +31,7 @@ $(function() {
     .done(function(data){ 
       var html = buildHTML(data);
       // ajaxのリクエストが成功
-      $('.messages').append(html);
+      $('.messages-box').append(html);
       $('.input-box__text').val('');
       $('#new_message')[0].reset();
       $('.messages-box').animate({scrollTop: $('.messages-box')[0].scrollHeight});
@@ -50,7 +50,7 @@ $(function() {
       // message-boxの最後のデータのidをlast_message_idにする(今見ているやつの最新情報)
       var last_message_id = $('.message').last().data('id');
       $.ajax({
-        url: 'api/messages',// 飛ばすとこは現在のページ
+        url: 'api/messages',// 飛ばすとこ
         type: 'get',//メゾットを指定
         dataType: 'json',//データはjson形式
         data: {id: last_message_id}//引き渡すデータのidはlast_message_id
@@ -58,8 +58,8 @@ $(function() {
       .done(function(messages) {
         messages.forEach(function(message) {
           var html = buildHTML(message);
+          $('.messages-box').append(html);
           console.log(html);
-          $('.messages').append(html)
           $('.messages-box').animate({scrollTop: $('.messages-box')[0].scrollHeight});
         })
       })
