@@ -1,18 +1,17 @@
 $(function() {
   function buildHTML(message) {
-    var imgHTML = message.image
-                ?""
-                :`<image class="lower-message__image" src="${message.image}">`;
+    
+    var imgHTML = message.image ? "" :`<image class="lower-message__image" src="${message.image}">`;
 
     var new_message = `<div class="message" data-id=${message.id}>
-            <div class="upper-info">
-              <div class="upper-info__user">${message.name} </div>
-              <div class="upper-info__date">${message.time} </div>
-            </div>
-            <div class="message__text">
-              <p class ="message__text__content">${message.content}</p> 
-              ${imgHTML}
-            </div>`
+                        <div class="upper-info">
+                        <div class="upper-info__user">${message.name} </div>
+                        <div class="upper-info__date">${message.time} </div>
+                      </div>
+                      <div class="message__text">
+                        <p class ="message__text__content">${message.content}</p> 
+                        ${imgHTML}
+                      </div>`
     return new_message;
   }
 
@@ -45,21 +44,22 @@ $(function() {
       $('.submit-btn').prop('disabled', false);
     })
   });
-
   var reloadMessages = function(){
+    // もしこのページのgroupsとmessagesが一致してたら
     if (location.href.match(/\/groups\/\d+\/messages/)){
-      var last_message_id = $('messages-box').last().data('id');
+      // message-boxの最後のデータのidをlast_message_idにする(今見ているやつの最新情報)
+      var last_message_id = $('.message').last().data('id');
       $.ajax({
-        url: location.href,
-        type: 'get',
-        dataType: 'json',
-        data: {id: last_message_id}
+        url: 'api/messages',// 飛ばすとこは現在のページ
+        type: 'get',//メゾットを指定
+        dataType: 'json',//データはjson形式
+        data: {id: last_message_id}//引き渡すデータのidはlast_message_id
       })
-
       .done(function(messages) {
-        data.forEach(function(messages) {
-          var html = buildHTML(message)
-          append(html)
+        messages.forEach(function(message) {
+          var html = buildHTML(message);
+          console.log(html);
+          $('.messages').append(html)
           $('.messages-box').animate({scrollTop: $('.messages-box')[0].scrollHeight});
         })
       })
@@ -69,6 +69,7 @@ $(function() {
     } else {
       clearInterval(interval);
     }
-  };
-  // setInterval(reloadMessages,5000)
+  }
+  // reloadMessages
+  setInterval(reloadMessages,5000)
 })
