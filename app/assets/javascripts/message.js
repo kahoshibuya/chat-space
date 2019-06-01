@@ -59,7 +59,6 @@ $(function() {
         messages.forEach(function(message) {
           var html = buildHTML(message);
           $('.messages-box').append(html);
-          console.log(html);
           $('.messages-box').animate({scrollTop: $('.messages-box')[0].scrollHeight});
         })
       })
@@ -70,6 +69,5 @@ $(function() {
       clearInterval(interval);
     }
   }
-  // reloadMessages
   setInterval(reloadMessages,5000)
 })
