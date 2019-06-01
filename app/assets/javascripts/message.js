@@ -1,10 +1,10 @@
 $(function() {
   function buildHTML(message) {
-    var imgHTML = (message.image == null)
-                ?("")
-                :(`<image class="lower-message__image" src="${message.image}">`);
+    var imgHTML = message.image
+                ?""
+                :`<image class="lower-message__image" src="${message.image}">`;
 
-    var new_message = `<div class="message">
+    var new_message = `<div class="message" data-id=${message.id}>
             <div class="upper-info">
               <div class="upper-info__user">${message.name} </div>
               <div class="upper-info__date">${message.time} </div>
@@ -46,31 +46,29 @@ $(function() {
     })
   });
 
-  var reloadMessages = (function(){
+  var reloadMessages = function(){
     if (location.href.match(/\/groups\/\d+\/messages/)){
-      $('.timeline__body').animate({scrollTop: $('.timeline__body')[0].scrollHeight}, 'fast');
-      last_message_id = $('.messages:last').data('id');
-    $.ajax({
-      url: location.href,
-      type: 'get',
-      dataType: 'json',
-      data: {id: last_message_id}
-    })
-
-    .done(function(messages) {
-      var insertHTML = buildHTML(message)
-      data.forEach(function(messages) {
-        var html = buildHTML(message)
-        append(html)
-        $('.messages-box').animate({scrollTop: $('.messages-box')[0].scrollHeight});
+      var last_message_id = $('messages-box').last().data('id');
+      $.ajax({
+        url: location.href,
+        type: 'get',
+        dataType: 'json',
+        data: {id: last_message_id}
       })
-      console.log('success');
-    })
-    .fail(function() {
-      alert('自動更新に失敗しました');
-    });
+
+      .done(function(messages) {
+        data.forEach(function(messages) {
+          var html = buildHTML(message)
+          append(html)
+          $('.messages-box').animate({scrollTop: $('.messages-box')[0].scrollHeight});
+        })
+      })
+      .fail(function() {
+        alert('自動更新に失敗しました');
+      });
     } else {
       clearInterval(interval);
     }
-  } , 5000 );
+  };
+  // setInterval(reloadMessages,5000)
 })
