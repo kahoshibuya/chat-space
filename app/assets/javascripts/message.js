@@ -28,7 +28,6 @@ $(function() {
       contentType: false
     })
     .done(function(data){ 
-      console.log(data.user_name)
       var html = buildHTML(data);
       // ajaxのリクエストが成功
       $('.messages-box').append(html);
