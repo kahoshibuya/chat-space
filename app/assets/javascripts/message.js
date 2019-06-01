@@ -1,12 +1,12 @@
 $(function() {
   function buildHTML(message) {
     
-    var imgHTML = message.image ? "" :`<image class="lower-message__image" src="${message.image}">`;
+    var imgHTML = message.image.url ? `<image class="lower-message__image" src="${message.image.url}">` : "" ;
 
     var new_message = `<div class="message" data-id=${message.id}>
                         <div class="upper-info">
-                        <div class="upper-info__user">${message.name} </div>
-                        <div class="upper-info__date">${message.time} </div>
+                        <div class="upper-info__user">${message.user_name} </div>
+                        <div class="upper-info__date">${message.created_at} </div>
                       </div>
                       <div class="message__text">
                         <p class ="message__text__content">${message.content}</p> 
@@ -14,7 +14,6 @@ $(function() {
                       </div>`
     return new_message;
   }
-
   $('#new_message').on('submit', function(e) {
     e.preventDefault();
     var formData = new FormData(this);
@@ -29,6 +28,7 @@ $(function() {
       contentType: false
     })
     .done(function(data){ 
+      console.log(data.user_name)
       var html = buildHTML(data);
       // ajaxのリクエストが成功
       $('.messages-box').append(html);
@@ -59,6 +59,7 @@ $(function() {
         messages.forEach(function(message) {
           var html = buildHTML(message);
           $('.messages-box').append(html);
+          console.log(html);
           $('.messages-box').animate({scrollTop: $('.messages-box')[0].scrollHeight});
         })
       })
