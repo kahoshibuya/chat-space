@@ -20,6 +20,7 @@ var member_list = $("#chat-group-users");
   }
 
   $(".chat-group-form__input").on("keyup", function() {
+    ImageBitmapRenderingContext.pry
     var input = $(".chat-group-form__input").val();
     $.ajax({
       type: 'GET',
